@@ -42,6 +42,10 @@ public class Regissuer implements Serializable {
         this.numberOfFilms = numberOfFilms;
         this.regissuer = regissuer;
     }
+
+    public Regissuer() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
         
     
 
