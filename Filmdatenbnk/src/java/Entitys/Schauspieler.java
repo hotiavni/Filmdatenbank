@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -34,7 +35,21 @@ public class Schauspieler implements Serializable {
     private String Biographie;
     private String Oscars;
     private String Filme;
-    
+    @ManyToOne
+    Schauspieler schauspieler;
+
+    public Schauspieler(Long id, String Vorname, String Nachname, int Alter, Date Geburtsdatum, String Geburtsort, String Biographie, String Oscars, String Filme, Schauspieler schauspieler) {
+        this.id = id;
+        this.Vorname = Vorname;
+        this.Nachname = Nachname;
+        this.Alter = Alter;
+        this.Geburtsdatum = Geburtsdatum;
+        this.Geburtsort = Geburtsort;
+        this.Biographie = Biographie;
+        this.Oscars = Oscars;
+        this.Filme = Filme;
+        this.schauspieler = schauspieler;
+    }
     public Long getId() {
         return id;
     }

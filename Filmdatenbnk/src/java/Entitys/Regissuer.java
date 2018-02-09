@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 
 /**
@@ -29,7 +30,18 @@ public class Regissuer implements Serializable {
     private int numberOfOscars;
     private String nationalitaet;
     private int numberOfFilms;
-    
+    @ManyToOne
+    Regissuer regissuer;
+
+    public Regissuer(Long id, String vorname, String nachname, int numberOfOscars, String nationalitaet, int numberOfFilms, Regissuer regissuer) {
+        this.id = id;
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.numberOfOscars = numberOfOscars;
+        this.nationalitaet = nationalitaet;
+        this.numberOfFilms = numberOfFilms;
+        this.regissuer = regissuer;
+    }
         
     
 
