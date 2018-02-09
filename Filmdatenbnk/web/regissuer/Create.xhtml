@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RegissuerCreateDlg" widgetVar="RegissuerCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateRegissuerTitle}">
+            <h:form id="RegissuerCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{regissuerController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateRegissuerLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{regissuerController.selected.id}" title="#{bundle.CreateRegissuerTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateRegissuerLabel_vorname}" for="vorname" />
+                        <p:inputText id="vorname" value="#{regissuerController.selected.vorname}" title="#{bundle.CreateRegissuerTitle_vorname}" />
+                        <p:outputLabel value="#{bundle.CreateRegissuerLabel_nachname}" for="nachname" />
+                        <p:inputText id="nachname" value="#{regissuerController.selected.nachname}" title="#{bundle.CreateRegissuerTitle_nachname}" />
+                        <p:outputLabel value="#{bundle.CreateRegissuerLabel_numberOfOscars}" for="numberOfOscars" />
+                        <p:inputText id="numberOfOscars" value="#{regissuerController.selected.numberOfOscars}" title="#{bundle.CreateRegissuerTitle_numberOfOscars}" />
+                        <p:outputLabel value="#{bundle.CreateRegissuerLabel_nationalitaet}" for="nationalitaet" />
+                        <p:inputText id="nationalitaet" value="#{regissuerController.selected.nationalitaet}" title="#{bundle.CreateRegissuerTitle_nationalitaet}" />
+                        <p:outputLabel value="#{bundle.CreateRegissuerLabel_numberOfFilms}" for="numberOfFilms" />
+                        <p:inputText id="numberOfFilms" value="#{regissuerController.selected.numberOfFilms}" title="#{bundle.CreateRegissuerTitle_numberOfFilms}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{regissuerController.create}" value="#{bundle.Save}" update="display,:RegissuerListForm:datalist,:growl" oncomplete="handleSubmit(args,'RegissuerCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RegissuerCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

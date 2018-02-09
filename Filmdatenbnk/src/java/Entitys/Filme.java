@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -28,6 +29,17 @@ public class Filme implements Serializable {
     private String länge;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date  jahr;
+    @ManyToOne
+    Filme filme;
+    
+
+    public Filme(Long id, String title, String länge, Date jahr, Filme filme) {
+        this.id = id;
+        this.title = title;
+        this.länge = länge;
+        this.jahr = jahr;
+        this.filme = filme;
+    }
     
 
     public Long getId() {

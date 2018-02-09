@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SchauspielerViewDlg" widgetVar="SchauspielerViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSchauspielerTitle}">
+            <h:form id="SchauspielerViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{schauspielerController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSchauspielerLabel_id}"/>
+                        <h:outputText value="#{schauspielerController.selected.id}" title="#{bundle.ViewSchauspielerTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewSchauspielerLabel_vorname}"/>
+                        <h:outputText value="#{schauspielerController.selected.vorname}" title="#{bundle.ViewSchauspielerTitle_vorname}"/>
+                        <h:outputText value="#{bundle.ViewSchauspielerLabel_nachname}"/>
+                        <h:outputText value="#{schauspielerController.selected.nachname}" title="#{bundle.ViewSchauspielerTitle_nachname}"/>
+                        <h:outputText value="#{bundle.ViewSchauspielerLabel_alter}"/>
+                        <h:outputText value="#{schauspielerController.selected.alter}" title="#{bundle.ViewSchauspielerTitle_alter}"/>
+                        <h:outputText value="#{bundle.ViewSchauspielerLabel_geburtsdatum}"/>
+                        <h:outputText value="#{schauspielerController.selected.geburtsdatum}" title="#{bundle.ViewSchauspielerTitle_geburtsdatum}"/>
+                        <h:outputText value="#{bundle.ViewSchauspielerLabel_geburtsort}"/>
+                        <h:outputText value="#{schauspielerController.selected.geburtsort}" title="#{bundle.ViewSchauspielerTitle_geburtsort}"/>
+                        <h:outputText value="#{bundle.ViewSchauspielerLabel_biographie}"/>
+                        <h:outputText value="#{schauspielerController.selected.biographie}" title="#{bundle.ViewSchauspielerTitle_biographie}"/>
+                        <h:outputText value="#{bundle.ViewSchauspielerLabel_oscars}"/>
+                        <h:outputText value="#{schauspielerController.selected.oscars}" title="#{bundle.ViewSchauspielerTitle_oscars}"/>
+                        <h:outputText value="#{bundle.ViewSchauspielerLabel_filme}"/>
+                        <h:outputText value="#{schauspielerController.selected.filme}" title="#{bundle.ViewSchauspielerTitle_filme}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SchauspielerViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
