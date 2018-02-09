@@ -29,8 +29,7 @@ public class Regissuer implements Serializable {
     private int numberOfOscars;
     private String nationalitaet;
     private int numberOfFilms;
-    
-    
+        
     
 
     public Long getId() {
