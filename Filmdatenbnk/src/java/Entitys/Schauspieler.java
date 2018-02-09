@@ -6,27 +6,22 @@
 package Entitys;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 
 /**
  *
  * @author Avni
  */
 @Entity
-public class Regissuer implements Serializable {
+public class Schauspieler implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    
-    
 
     public Long getId() {
         return id;
@@ -46,10 +41,10 @@ public class Regissuer implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Regissuer)) {
+        if (!(object instanceof Schauspieler)) {
             return false;
         }
-        Regissuer other = (Regissuer) object;
+        Schauspieler other = (Schauspieler) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -58,7 +53,7 @@ public class Regissuer implements Serializable {
 
     @Override
     public String toString() {
-        return "Entitys.Regissuer[ id=" + id + " ]";
+        return "Entitys.Schauspieler[ id=" + id + " ]";
     }
     
 }
