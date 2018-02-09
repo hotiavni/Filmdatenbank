@@ -6,10 +6,12 @@
 package Entitys;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -23,6 +25,16 @@ public class Schauspieler implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String Vorname;
+    private String Nachname;
+    private int Alter;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date Geburtsdatum;
+    private String Geburtsort;
+    private String Biographie;
+    private String Oscars;
+    private String Filme;
+    
     public Long getId() {
         return id;
     }
@@ -53,7 +65,73 @@ public class Schauspieler implements Serializable {
 
     @Override
     public String toString() {
-        return "Entitys.Schauspieler[ id=" + id + " ]";
+        return "Schauspieler{" + "id=" + id + ", Vorname=" + Vorname + ", Nachname=" + Nachname + ", Alter=" + Alter + ", Geburtsdatum=" + Geburtsdatum + ", Geburtsort=" + Geburtsort + ", Biographie=" + Biographie + ", Oscars=" + Oscars + ", Filme=" + Filme + '}';
+    }
+
+
+
+    public String getVorname() {
+        return Vorname;
+    }
+
+    public void setVorname(String Vorname) {
+        this.Vorname = Vorname;
+    }
+
+    public String getNachname() {
+        return Nachname;
+    }
+
+    public void setNachname(String Nachname) {
+        this.Nachname = Nachname;
+    }
+
+    public int getAlter() {
+        return Alter;
+    }
+
+    public void setAlter(int Alter) {
+        this.Alter = Alter;
+    }
+
+    public Date getGeburtsdatum() {
+        return Geburtsdatum;
+    }
+
+    public void setGeburtsdatum(Date Geburtsdatum) {
+        this.Geburtsdatum = Geburtsdatum;
+    }
+
+    public String getGeburtsort() {
+        return Geburtsort;
+    }
+
+    public void setGeburtsort(String Geburtsort) {
+        this.Geburtsort = Geburtsort;
+    }
+
+    public String getBiographie() {
+        return Biographie;
+    }
+
+    public void setBiographie(String Biographie) {
+        this.Biographie = Biographie;
+    }
+
+    public String getOscars() {
+        return Oscars;
+    }
+
+    public void setOscars(String Oscars) {
+        this.Oscars = Oscars;
+    }
+
+    public String getFilme() {
+        return Filme;
+    }
+
+    public void setFilme(String Filme) {
+        this.Filme = Filme;
     }
     
 }
