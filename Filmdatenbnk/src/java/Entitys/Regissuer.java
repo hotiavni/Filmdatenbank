@@ -24,6 +24,11 @@ public class Regissuer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String vorname;
+    private String nachname;
+    private int numberOfOscars;
+    private String nationalitaet;
+    private int numberOfFilms;
     
     
     
@@ -59,6 +64,46 @@ public class Regissuer implements Serializable {
     @Override
     public String toString() {
         return "Entitys.Regissuer[ id=" + id + " ]";
+    }
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
+    }
+
+    public String getNachname() {
+        return nachname;
+    }
+
+    public void setNachname(String nachname) {
+        this.nachname = nachname;
+    }
+
+    public int getNumberOfOscars() {
+        return numberOfOscars;
+    }
+
+    public void setNumberOfOscars(int numberOfOscars) {
+        this.numberOfOscars = numberOfOscars;
+    }
+
+    public String getNationalitaet() {
+        return nationalitaet;
+    }
+
+    public void setNationalitaet(String nationalitaet) {
+        this.nationalitaet = nationalitaet;
+    }
+
+    public int getNumberOfFilms() {
+        return numberOfFilms;
+    }
+
+    public void setNumberOfFilms(int numberOfFilms) {
+        this.numberOfFilms = numberOfFilms;
     }
     
 }
