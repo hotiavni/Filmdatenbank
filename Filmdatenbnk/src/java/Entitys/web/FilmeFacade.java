@@ -12,21 +12,21 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Avni
+ * @author Rita
  */
 @Stateless
 public class FilmeFacade extends AbstractFacade<Filme> {
 
-    @PersistenceContext(unitName = "FilmdatenbnkPU")
-    private EntityManager em;
+	@PersistenceContext(unitName = "FilmdatenbnkPU")
+	private EntityManager em;
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+	@Override
+	protected EntityManager getEntityManager() {
+		return em;
+	}
 
-    public FilmeFacade() {
-        super(Filme.class);
-    }
-    
+	public FilmeFacade() {
+		super(Filme.class);
+	}
+	
 }

@@ -18,8 +18,8 @@
                         <p:inputText id="vorname" value="#{schauspielerController.selected.vorname}" title="#{bundle.CreateSchauspielerTitle_vorname}" />
                         <p:outputLabel value="#{bundle.CreateSchauspielerLabel_nachname}" for="nachname" />
                         <p:inputText id="nachname" value="#{schauspielerController.selected.nachname}" title="#{bundle.CreateSchauspielerTitle_nachname}" />
-                        <p:outputLabel value="#{bundle.CreateSchauspielerLabel_alter}" for="alter" />
-                        <p:inputText id="alter" value="#{schauspielerController.selected.alter}" title="#{bundle.CreateSchauspielerTitle_alter}" />
+                        <p:outputLabel value="#{bundle.CreateSchauspielerLabel_age}" for="age" />
+                        <p:inputText id="age" value="#{schauspielerController.selected.age}" title="#{bundle.CreateSchauspielerTitle_age}" />
                         <p:outputLabel value="#{bundle.CreateSchauspielerLabel_geburtsdatum}" for="geburtsdatum" />
                         <p:inputText id="geburtsdatum" value="#{schauspielerController.selected.geburtsdatum}" title="#{bundle.CreateSchauspielerTitle_geburtsdatum}" />
                         <p:outputLabel value="#{bundle.CreateSchauspielerLabel_geburtsort}" for="geburtsort" />
@@ -28,8 +28,6 @@
                         <p:inputText id="biographie" value="#{schauspielerController.selected.biographie}" title="#{bundle.CreateSchauspielerTitle_biographie}" />
                         <p:outputLabel value="#{bundle.CreateSchauspielerLabel_oscars}" for="oscars" />
                         <p:inputText id="oscars" value="#{schauspielerController.selected.oscars}" title="#{bundle.CreateSchauspielerTitle_oscars}" />
-                        <p:outputLabel value="#{bundle.CreateSchauspielerLabel_filme}" for="filme" />
-                        <p:inputText id="filme" value="#{schauspielerController.selected.filme}" title="#{bundle.CreateSchauspielerTitle_filme}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{schauspielerController.create}" value="#{bundle.Save}" update="display,:SchauspielerListForm:datalist,:growl" oncomplete="handleSubmit(args,'SchauspielerCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SchauspielerCreateDialog.hide()"/>

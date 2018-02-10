@@ -18,8 +18,8 @@
                         <p:inputText id="vorname" value="#{schauspielerController.selected.vorname}" title="#{bundle.EditSchauspielerTitle_vorname}" />
                         <p:outputLabel value="#{bundle.EditSchauspielerLabel_nachname}" for="nachname" />
                         <p:inputText id="nachname" value="#{schauspielerController.selected.nachname}" title="#{bundle.EditSchauspielerTitle_nachname}" />
-                        <p:outputLabel value="#{bundle.EditSchauspielerLabel_alter}" for="alter" />
-                        <p:inputText id="alter" value="#{schauspielerController.selected.alter}" title="#{bundle.EditSchauspielerTitle_alter}" />
+                        <p:outputLabel value="#{bundle.EditSchauspielerLabel_age}" for="age" />
+                        <p:inputText id="age" value="#{schauspielerController.selected.age}" title="#{bundle.EditSchauspielerTitle_age}" />
                         <p:outputLabel value="#{bundle.EditSchauspielerLabel_geburtsdatum}" for="geburtsdatum" />
                         <p:inputText id="geburtsdatum" value="#{schauspielerController.selected.geburtsdatum}" title="#{bundle.EditSchauspielerTitle_geburtsdatum}" />
                         <p:outputLabel value="#{bundle.EditSchauspielerLabel_geburtsort}" for="geburtsort" />
@@ -28,8 +28,6 @@
                         <p:inputText id="biographie" value="#{schauspielerController.selected.biographie}" title="#{bundle.EditSchauspielerTitle_biographie}" />
                         <p:outputLabel value="#{bundle.EditSchauspielerLabel_oscars}" for="oscars" />
                         <p:inputText id="oscars" value="#{schauspielerController.selected.oscars}" title="#{bundle.EditSchauspielerTitle_oscars}" />
-                        <p:outputLabel value="#{bundle.EditSchauspielerLabel_filme}" for="filme" />
-                        <p:inputText id="filme" value="#{schauspielerController.selected.filme}" title="#{bundle.EditSchauspielerTitle_filme}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{schauspielerController.update}" value="#{bundle.Save}" update="display,:SchauspielerListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SchauspielerEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SchauspielerEditDialog.hide()"/>

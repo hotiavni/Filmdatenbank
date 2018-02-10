@@ -19,7 +19,14 @@
                         <p:outputLabel value="#{bundle.EditFilmeLabel_länge}" for="länge" />
                         <p:inputText id="länge" value="#{filmeController.selected.länge}" title="#{bundle.EditFilmeTitle_länge}" />
                         <p:outputLabel value="#{bundle.EditFilmeLabel_jahr}" for="jahr" />
-                        <p:calendar id="jahr" pattern="MM/dd/yyyy" value="#{filmeController.selected.jahr}" title="#{bundle.EditFilmeTitle_jahr}"  showOn="button"/>
+                        <p:calendar id="jahr" pattern="MM/dd/yyyy HH:mm:ss" value="#{filmeController.selected.jahr}" title="#{bundle.EditFilmeTitle_jahr}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditFilmeLabel_regisseur}" for="regisseur" />
+                        <p:selectOneMenu id="regisseur" value="#{filmeController.selected.regisseur}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{regissuerController.itemsAvailableSelectOne}"
+                                           var="regisseurItem"
+                                           itemValue="#{regisseurItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{filmeController.update}" value="#{bundle.Save}" update="display,:FilmeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FilmeEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="FilmeEditDialog.hide()"/>

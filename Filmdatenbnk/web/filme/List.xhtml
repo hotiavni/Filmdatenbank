@@ -14,54 +14,60 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="FilmeListForm">
-                <p:panel header="#{bundle.ListFilmeTitle}">
-                    <p:dataTable id="datalist" value="#{filmeController.items}" var="item"
-                                 selectionMode="single" selection="#{filmeController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.id}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+                <h:form id="FilmeListForm">
+                    <p:panel header="#{bundle.ListFilmeTitle}">
+                        <p:dataTable id="datalist" value="#{filmeController.items}" var="item"
+                            selectionMode="single" selection="#{filmeController.selected}"
+                            paginator="true"
+                            rowKey="#{item.id}"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFilmeTitle_id}"/>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListFilmeTitle_id}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListFilmeTitle_title}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.title}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListFilmeTitle_länge}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.länge}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListFilmeTitle_jahr}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.jahr}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListFilmeTitle_regisseur}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.regisseur}"/>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{filmeController.prepareCreate}" update=":FilmeCreateForm" oncomplete="PF('FilmeCreateDialog').show()"/>
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":FilmeViewForm" oncomplete="PF('FilmeViewDialog').show()" disabled="#{empty filmeController.selected}"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":FilmeEditForm" oncomplete="PF('FilmeEditDialog').show()" disabled="#{empty filmeController.selected}"/>
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{filmeController.destroy}" update=":growl,datalist" disabled="#{empty filmeController.selected}"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFilmeTitle_title}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.title}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFilmeTitle_länge}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.länge}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFilmeTitle_jahr}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.jahr}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{filmeController.prepareCreate}" update=":FilmeCreateForm" oncomplete="PF('FilmeCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":FilmeViewForm" oncomplete="PF('FilmeViewDialog').show()" disabled="#{empty filmeController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":FilmeEditForm" oncomplete="PF('FilmeEditDialog').show()" disabled="#{empty filmeController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{filmeController.destroy}" update=":growl,datalist" disabled="#{empty filmeController.selected}"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>

@@ -20,8 +20,10 @@
                         <h:outputText value="#{filmeController.selected.länge}" title="#{bundle.ViewFilmeTitle_länge}"/>
                         <h:outputText value="#{bundle.ViewFilmeLabel_jahr}"/>
                         <h:outputText value="#{filmeController.selected.jahr}" title="#{bundle.ViewFilmeTitle_jahr}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewFilmeLabel_regisseur}"/>
+                        <h:outputText value="#{filmeController.selected.regisseur}" title="#{bundle.ViewFilmeTitle_regisseur}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="FilmeViewDialog.hide()"/>
                 </h:panelGroup>

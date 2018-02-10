@@ -23,143 +23,143 @@ import javax.faces.convert.FacesConverter;
 @SessionScoped
 public class FilmeController implements Serializable {
 
-    @EJB
-    private Entitys.web.FilmeFacade ejbFacade;
-    private List<Filme> items = null;
-    private Filme selected;
+	@EJB
+	private Entitys.web.FilmeFacade ejbFacade;
+	private List<Filme> items = null;
+	private Filme selected;
 
-    public FilmeController() {
-    }
+	public FilmeController() {
+	}
 
-    public Filme getSelected() {
-        return selected;
-    }
+	public Filme getSelected() {
+		return selected;
+	}
 
-    public void setSelected(Filme selected) {
-        this.selected = selected;
-    }
+	public void setSelected(Filme selected) {
+		this.selected = selected;
+	}
 
-    protected void setEmbeddableKeys() {
-    }
+	protected void setEmbeddableKeys() {
+	}
 
-    protected void initializeEmbeddableKey() {
-    }
+	protected void initializeEmbeddableKey() {
+	}
 
-    private FilmeFacade getFacade() {
-        return ejbFacade;
-    }
+	private FilmeFacade getFacade() {
+		return ejbFacade;
+	}
 
-    public Filme prepareCreate() {
-        selected = new Filme();
-        initializeEmbeddableKey();
-        return selected;
-    }
+	public Filme prepareCreate() {
+		selected = new Filme();
+		initializeEmbeddableKey();
+		return selected;
+	}
 
-    public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("FilmeCreated"));
-        if (!JsfUtil.isValidationFailed()) {
-            items = null;    // Invalidate list of items to trigger re-query.
-        }
-    }
+	public void create() {
+		persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("FilmeCreated"));
+		if (!JsfUtil.isValidationFailed()) {
+			items = null;    // Invalidate list of items to trigger re-query.
+		}
+	}
 
-    public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("FilmeUpdated"));
-    }
+	public void update() {
+		persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("FilmeUpdated"));
+	}
 
-    public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("FilmeDeleted"));
-        if (!JsfUtil.isValidationFailed()) {
-            selected = null; // Remove selection
-            items = null;    // Invalidate list of items to trigger re-query.
-        }
-    }
+	public void destroy() {
+		persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("FilmeDeleted"));
+		if (!JsfUtil.isValidationFailed()) {
+			selected = null; // Remove selection
+			items = null;    // Invalidate list of items to trigger re-query.
+		}
+	}
 
-    public List<Filme> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
-        return items;
-    }
+	public List<Filme> getItems() {
+		if (items == null) {
+			items = getFacade().findAll();
+		}
+		return items;
+	}
 
-    private void persist(PersistAction persistAction, String successMessage) {
-        if (selected != null) {
-            setEmbeddableKeys();
-            try {
-                if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
-                } else {
-                    getFacade().remove(selected);
-                }
-                JsfUtil.addSuccessMessage(successMessage);
-            } catch (EJBException ex) {
-                String msg = "";
-                Throwable cause = ex.getCause();
-                if (cause != null) {
-                    msg = cause.getLocalizedMessage();
-                }
-                if (msg.length() > 0) {
-                    JsfUtil.addErrorMessage(msg);
-                } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-                }
-            } catch (Exception ex) {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            }
-        }
-    }
+	private void persist(PersistAction persistAction, String successMessage) {
+		if (selected != null) {
+			setEmbeddableKeys();
+			try {
+				if (persistAction != PersistAction.DELETE) {
+					getFacade().edit(selected);
+				} else {
+					getFacade().remove(selected);
+				}
+				JsfUtil.addSuccessMessage(successMessage);
+			} catch (EJBException ex) {
+				String msg = "";
+				Throwable cause = ex.getCause();
+				if (cause != null) {
+					msg = cause.getLocalizedMessage();
+				}
+				if (msg.length() > 0) {
+					JsfUtil.addErrorMessage(msg);
+				} else {
+					JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+				}
+			} catch (Exception ex) {
+				Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+				JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+			}
+		}
+	}
 
-    public Filme getFilme(java.lang.Long id) {
-        return getFacade().find(id);
-    }
+	public Filme getFilme(java.lang.Long id) {
+		return getFacade().find(id);
+	}
 
-    public List<Filme> getItemsAvailableSelectMany() {
-        return getFacade().findAll();
-    }
+	public List<Filme> getItemsAvailableSelectMany() {
+		return getFacade().findAll();
+	}
 
-    public List<Filme> getItemsAvailableSelectOne() {
-        return getFacade().findAll();
-    }
+	public List<Filme> getItemsAvailableSelectOne() {
+		return getFacade().findAll();
+	}
 
-    @FacesConverter(forClass = Filme.class)
-    public static class FilmeControllerConverter implements Converter {
+	@FacesConverter(forClass = Filme.class)
+	public static class FilmeControllerConverter implements Converter {
 
-        @Override
-        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
-            if (value == null || value.length() == 0) {
-                return null;
-            }
-            FilmeController controller = (FilmeController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "filmeController");
-            return controller.getFilme(getKey(value));
-        }
+		@Override
+		public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+			if (value == null || value.length() == 0) {
+				return null;
+			}
+			FilmeController controller = (FilmeController) facesContext.getApplication().getELResolver().
+					getValue(facesContext.getELContext(), null, "filmeController");
+			return controller.getFilme(getKey(value));
+		}
 
-        java.lang.Long getKey(String value) {
-            java.lang.Long key;
-            key = Long.valueOf(value);
-            return key;
-        }
+		java.lang.Long getKey(String value) {
+			java.lang.Long key;
+			key = Long.valueOf(value);
+			return key;
+		}
 
-        String getStringKey(java.lang.Long value) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(value);
-            return sb.toString();
-        }
+		String getStringKey(java.lang.Long value) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(value);
+			return sb.toString();
+		}
 
-        @Override
-        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
-            if (object == null) {
-                return null;
-            }
-            if (object instanceof Filme) {
-                Filme o = (Filme) object;
-                return getStringKey(o.getId());
-            } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Filme.class.getName()});
-                return null;
-            }
-        }
+		@Override
+		public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+			if (object == null) {
+				return null;
+			}
+			if (object instanceof Filme) {
+				Filme o = (Filme) object;
+				return getStringKey(o.getId());
+			} else {
+				Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Filme.class.getName()});
+				return null;
+			}
+		}
 
-    }
+	}
 
 }
